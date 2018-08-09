@@ -30,11 +30,16 @@ class ConversionTest {
 
 	@Test
 	void conversionToCelsiusTest() {
-		assertEquals(363.8889f,ConversionController.convertToCelsius(687.0f));
+		assertEquals(363.89,ConversionController.arrondi(ConversionController.convertToCelsius(687.0),2));
 	}
 
 	@Test
 	void conversionToFahrenheitTest() {
-		assertEquals(122.0f,ConversionController.convertToFahrenheit(50.0f));
+		assertEquals(122.0,ConversionController.arrondi(ConversionController.convertToFahrenheit(50.0),2));
+	}
+	
+	@Test
+	void conversionArrondi() {
+		assertEquals(50.89 , ConversionController.arrondi(50.888,2));
 	}
 }

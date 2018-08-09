@@ -37,13 +37,13 @@ public class Conversion {
 		// implementation of the controller
 		switch(choose) {
 		case 1: 
-				System.out.println(result
-					+" C correspond a : " + ConversionController.convertToFahrenheit(result) + " F.");
+				System.out.println(ConversionController.arrondi(result,1)
+					+" C correspond a : " + ConversionController.arrondi(ConversionController.convertToFahrenheit(result),2) + " F.");
 					break;
 		
 		case 2: 
-				System.out.println(result
-					+" F correspond a : " + ConversionController.convertToCelsius(result) + " C.");
+				System.out.println(ConversionController.arrondi(result,1)
+					+" F correspond a : " + ConversionController.arrondi(ConversionController.convertToCelsius(result),2) + " C.");
 					break;
 		
 		default: 
