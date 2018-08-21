@@ -15,15 +15,13 @@ import com.panel.Panel;
 
 public class Frame extends JFrame implements java.awt.event.ActionListener {
 	
-	 private int inc = 1;
-	 
+	  private int inc = 1;
 	  private Panel pan = new Panel();
 	  private Bouton bouton = new Bouton("start"),bouton2 = new Bouton("stop");
 	  private Panel container = new Panel();
 	  private JLabel label = new JLabel();
 	  private int compteur = 0;
-
-
+	  private Thread t;
 	  private boolean animated = true;
 	  private boolean backX, backY;
 	  private int x, y;
@@ -80,24 +78,30 @@ public class Frame extends JFrame implements java.awt.event.ActionListener {
 	    }     
 	  }
 
-	  class BoutonListener implements ActionListener{
+
+	  public class BoutonListener implements ActionListener{
 	    public void actionPerformed(ActionEvent arg0) {
 	      animated = true;
+	      t = new Thread(new PlayAnimation());
+	      t.start();
 	      bouton.setEnabled(false);
 	      bouton2.setEnabled(true);
-	      go();
-	      System.out.println("started");
 	    }
 	  }
 
-	  class Bouton2Listener implements ActionListener{
-	     public void actionPerformed(ActionEvent e) {
-	      animated = false;     
+	  class Bouton2Listener  implements ActionListener{
+	    public void actionPerformed(ActionEvent e) {
+	      animated = false;       
 	      bouton.setEnabled(true);
 	      bouton2.setEnabled(false);
-	      System.out.println("stoped");
 	    }
-	  }
+	  }       
+
+	  class PlayAnimation implements Runnable{
+	    public void run() {
+	      go();                   
+	    }               
+	  } 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
